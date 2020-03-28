@@ -11,9 +11,12 @@ Credits for rgbmatrix library: https://github.com/hzeller/rpi-rgb-led-matrix
 
 Note: root privileges required due to LED matrix.
 
-## Service
-In order to activate the service and run it on every restart, execute:
-1. `sudo chmod +x service/matrix.sh` to make the service executable.
-2. `sudo systemctl enable /home/pi/KVBMonitor/service/kvbmonitor.service` to enable the daemon.
-
-Any flags for configuring the matrix such as number of rows, number of columns, brightness etc. can be adjusted in `service/matrix.sh`.
+## Autostart
+In order to activate the service and run it on every restart, execute (in KVBMonitor folder):
+1. `chomod 755 launcher.sh` to make the service executable.
+2. `cd` to navigate back to your home directory.
+3. `mkdir logs` Create a logs directory.
+4. `sudo crontab -e` Bring up crontab window.
+5. Enter the following line `@reboot sh /home/pi/bbt/launcher.sh >/home/pi/logs/cronlog 2>&1` -> Will execute launcher.sh on startup.
+6. `sudo reboot` and see if it works.
+6a) if it does not work: `cd logs`followed by `cat cronlog`
